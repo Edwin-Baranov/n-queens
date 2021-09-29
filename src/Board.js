@@ -81,7 +81,7 @@
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
       //Get array of row at index
-      var workingRow = this.rows()[rowIndex];
+      var workingRow = this.get(rowIndex);
       var count = 0;
 
       //go throw array, probably with for loop
@@ -103,7 +103,14 @@
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      return false; // fixme
+      var length = this.get('n');
+      for (var i = 0; i < length; i++) {
+        if (this.hasRowConflictAt(i)) {
+          return true;
+        }
+      }
+
+      return false;
     },
 
 
