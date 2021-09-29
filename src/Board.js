@@ -62,14 +62,15 @@
     },
 
 
-/*
-         _             _     _
-     ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
-    / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
-    \__ \ || (_| | |  | |_  | | | |  __/ | |  __/_
-    |___/\__\__,_|_|   \__| |_| |_|\___|_|  \___(_)
+    /*
+            _             _     _
+        ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
+        / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
+        \__ \ || (_| | |  | |_  | | | |  __/ | |  __/_
+        |___/\__\__,_|_|   \__| |_| |_|\___|_|  \___(_)
 
- */
+    */
+
     /*=========================================================================
     =                 TODO: fill in these Helper Functions                    =
     =========================================================================*/
@@ -79,7 +80,26 @@
     //
     // test if a specific row on this board contains a conflict
     hasRowConflictAt: function(rowIndex) {
-      return false; // fixme
+      //Get array of row at index
+      var workingRow = this.rows()[rowIndex];
+      var count = 0;
+
+      var conditionFalg = true;
+      //go throw array, probably with for loop
+      //count how many 'items' are on row
+      for (var i = 0; i < workingRow.length; i++) {
+        var item = workingRow[i];
+        //if multiple items on row obvious conflict
+        if (item) {
+          count++;
+        }
+
+        if (count > 1) {
+          return true;
+        }
+      }
+
+      return false;
     },
 
     // test if any rows on this board contain conflicts
