@@ -120,12 +120,36 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
-      return false; // fixme
+      //Need access to every row on board
+      //loop through collection of rows
+      var workingRow;
+      var count = 0;
+      var length = this.get('n');
+      for (var i = 0; i < length; i++) {
+        workingRow = this.get(i);
+        //count any piece in colIndex of row
+        if (workingRow[colIndex]) {
+          count++;
+        }
+        //if at any point we count two or more return true
+        if (count > 1) {
+          return true;
+        }
+      }
+      //return false if we did not find any conflicts
+      return false;
     },
 
     // test if any columns on this board contain conflicts
+    //Loop through colum index and call hasColConflictAt funciton
     hasAnyColConflicts: function() {
-      return false; // fixme
+      var length = this.get('n');
+      for (var i = 0; i < length; i++) {
+        if (this.hasColConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
