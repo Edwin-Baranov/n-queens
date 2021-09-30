@@ -192,8 +192,6 @@
         }
       }
       //end at standard length
-
-
       return false;
     },
 
@@ -204,12 +202,40 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var length = this.get('n');
+      var rowIndex = 0;
+      var count = 0;
+      for (var colIndex = minorDiagonalColumnIndexAtFirstRow; rowIndex < length; colIndex--) {
+        if (colIndex >= length) {
+          rowIndex++;
+          continue;
+        }
+
+        if (this.get(rowIndex)[colIndex]) {
+          count++;
+        }
+
+        if (count > 1) {
+          return true;
+        }
+
+        rowIndex++;
+      }
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      //for loop starting at smallest negative number,
+      var length = this.get('n');
+
+      for (var i = 2 * (length - 1); i >= 0; i--) {
+        if (this.hasMinorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      //end at standard length
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
